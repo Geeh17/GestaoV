@@ -141,3 +141,4 @@ C:\Users\Geraldo Luiz\Desktop\Projetos Pessoais\Loja\APILoja\APILoja\obj\Debug\n
 C:\Users\Geraldo Luiz\Desktop\Projetos Pessoais\Loja\APILoja\APILoja\obj\Debug\net8.0\APILoja.pdb
 C:\Users\Geraldo Luiz\Desktop\Projetos Pessoais\Loja\APILoja\APILoja\obj\Debug\net8.0\APILoja.genruntimeconfig.cache
 C:\Users\Geraldo Luiz\Desktop\Projetos Pessoais\Loja\APILoja\APILoja\obj\Debug\net8.0\ref\APILoja.dll
+C:\Users\Geraldo Luiz\Desktop\Projetos Pessoais\Loja\APILoja\APILoja\obj\Debug\net8.0\APILoja.sourcelink.json
