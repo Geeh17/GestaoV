@@ -42,7 +42,7 @@ namespace APILoja.Migrations
 
                     b.HasKey("CategoriaId");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("APILoja.Models.Produto", b =>
@@ -79,7 +79,7 @@ namespace APILoja.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produtos", (string)null);
                 });
 
             modelBuilder.Entity("APILoja.Models.Produto", b =>
