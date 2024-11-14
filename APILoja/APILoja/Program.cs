@@ -1,12 +1,15 @@
-using ApiCatalogo.AppServicesExtensions;
+using APILoja.AppServicesExtensions;
 using APILoja.ApiEndpoints;
 using APILoja.AppServicesExtensions;
+using APILoja.Services;
+using APILoja.ApiEndpointslogin;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddApiSwagger();
 builder.AddPersistence();
 builder.Services.AddCors();
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.AddAutenticationJwt();
 
 var app = builder.Build();

@@ -9,34 +9,37 @@ namespace APILoja.Context
 
         public DbSet<Produto>? Produtos { get; set; }
         public DbSet<Categoria>? Categorias { get; set; }
+        public DbSet<Usuario>? Usuarios { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
             mb.Entity<Categoria>().HasKey(c => c.CategoriaId);
             mb.Entity<Categoria>().Property(c => c.Nome)
-                                      .HasMaxLength(100)
-                                      .IsRequired();
+                .HasMaxLength(100)
+                .IsRequired();
             mb.Entity<Categoria>().Property(c => c.Descricao)
-                                      .HasMaxLength(150)
-                                      .IsRequired();
+                .HasMaxLength(150)
+                .IsRequired();
 
-            mb.Entity<Produto>().HasKey(c => c.ProdutoId);
-            mb.Entity<Produto>().Property(c => c.Nome)
-                                      .HasMaxLength(100)
-                                      .IsRequired();
-            mb.Entity<Produto>().Property(c => c.Descricao)
-                                       .HasMaxLength(150);
-            mb.Entity<Produto>().Property(c => c.Preco).HasPrecision(14, 2);
+            mb.Entity<Produto>().HasKey(p => p.ProdutoId);
+            mb.Entity<Produto>().Property(p => p.Nome)
+                .HasMaxLength(100)
+                .IsRequired();
+            mb.Entity<Produto>().Property(p => p.Descricao)
+                .HasMaxLength(150);
+            mb.Entity<Produto>().Property(p => p.Preco).HasPrecision(14, 2);
 
             mb.Entity<Produto>()
-                .HasOne<Categoria>(c=> c.Categoria)
-                 .WithMany(p=> p.Produtos)
-                  .HasForeignKey(c => c.CategoriaId);
+                .HasOne<Categoria>(p => p.Categoria)
+                .WithMany(c => c.Produtos)
+                .HasForeignKey(p => p.CategoriaId);
 
-
-
-
+            mb.Entity<Usuario>().HasKey(u => u.UsuarioNome); 
+            mb.Entity<Usuario>().Property(u => u.UsuarioNome)
+                .HasMaxLength(50)
+                .IsRequired(); 
+            mb.Entity<Usuario>().Property(u => u.Senha)
+                .IsRequired(); 
         }
-
     }
 }

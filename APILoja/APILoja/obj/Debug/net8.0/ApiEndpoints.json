@@ -111,7 +111,7 @@
     ]
   },
   {
-    "ContainingType": "APILoja.ApiEndpoints.AutenticacaoEndpoints\u002B\u003C\u003Ec__DisplayClass0_0",
+    "ContainingType": "APILoja.ApiEndpointslogin.AutenticacaoEndpoints\u002B\u003C\u003Ec__DisplayClass0_0",
     "Method": "\u003CMapAutenticacaoEndpoints\u003Eb__0",
     "RelativePath": "login",
     "HttpMethod": "POST",
@@ -251,5 +251,36 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "APILoja.ApiEndpointslogin.AutenticacaoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAutenticacaoEndpoints\u003Eb__0_1",
+    "RelativePath": "register",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userModel",
+        "Type": "APILoja.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      }
+    ],
+    "Tags": [
+      "Autenticacao"
+    ],
+    "EndpointName": "Register"
   }
 ]

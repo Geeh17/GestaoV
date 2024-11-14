@@ -1,4 +1,4 @@
-﻿namespace ApiCatalogo.AppServicesExtensions
+﻿namespace APILoja.AppServicesExtensions
 {
     public static class ApplicationBuilderExtensions
     {
