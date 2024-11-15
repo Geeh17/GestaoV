@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\apiendpoints\\categoriasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\categoriasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\apiendpoints\\produtosendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\produtosendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\models\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\models\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\apiendpoints\\autenticacaoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\autenticacaoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\migrations\\20241115025202_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\migrations\\20241115025202_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,88 +30,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "APILoja\\Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Usuario.cs",
-              "RelativeToolTip": "APILoja\\Models\\Usuario.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Produto.cs",
+              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Produto.cs",
+              "RelativeDocumentMoniker": "APILoja\\Models\\Produto.cs",
+              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Produto.cs",
+              "RelativeToolTip": "APILoja\\Models\\Produto.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:44:29.586Z"
+              "WhenOpened": "2024-11-15T16:28:13.964Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AutenticacaoEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
-              "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
-              "RelativeToolTip": "APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAqwF0AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:42:55.497Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Categoria.cs",
               "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Categoria.cs",
               "RelativeDocumentMoniker": "APILoja\\Models\\Categoria.cs",
               "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Categoria.cs",
               "RelativeToolTip": "APILoja\\Models\\Categoria.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:37:01.435Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Program.cs",
-              "RelativeDocumentMoniker": "APILoja\\Program.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Program.cs",
-              "RelativeToolTip": "APILoja\\Program.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAYwBMAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:35:13.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProdutosEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "RelativeToolTip": "APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T21:54:39.008Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CategoriasEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "RelativeToolTip": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T21:53:37.028Z",
+              "WhenOpened": "2024-11-15T16:28:05.236Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20241115025202_Roles.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Migrations\\20241115025202_Roles.cs",
-              "RelativeDocumentMoniker": "APILoja\\Migrations\\20241115025202_Roles.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Migrations\\20241115025202_Roles.cs",
-              "RelativeToolTip": "APILoja\\Migrations\\20241115025202_Roles.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:52:02.715Z"
             }
           ]
         }

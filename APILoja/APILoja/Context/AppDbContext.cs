@@ -9,10 +9,11 @@ namespace APILoja.Context
 
         public DbSet<Produto>? Produtos { get; set; }
         public DbSet<Categoria>? Categorias { get; set; }
-        public DbSet<Usuario>? Usuarios { get; set; } 
+        public DbSet<Usuario>? Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            // Configuração para Categoria
             mb.Entity<Categoria>().HasKey(c => c.CategoriaId);
             mb.Entity<Categoria>().Property(c => c.Nome)
                 .HasMaxLength(100)
@@ -21,6 +22,7 @@ namespace APILoja.Context
                 .HasMaxLength(150)
                 .IsRequired();
 
+            // Configuração para Produto
             mb.Entity<Produto>().HasKey(p => p.ProdutoId);
             mb.Entity<Produto>().Property(p => p.Nome)
                 .HasMaxLength(100)
@@ -34,12 +36,19 @@ namespace APILoja.Context
                 .WithMany(c => c.Produtos)
                 .HasForeignKey(p => p.CategoriaId);
 
-            mb.Entity<Usuario>().HasKey(u => u.UsuarioNome); 
+            // Configuração para Usuario
+            mb.Entity<Usuario>().HasKey(u => u.UsuarioId);
+            mb.Entity<Usuario>().Property(u => u.UsuarioId)
+                .ValueGeneratedOnAdd(); 
             mb.Entity<Usuario>().Property(u => u.UsuarioNome)
                 .HasMaxLength(50)
-                .IsRequired(); 
+                .IsRequired();
             mb.Entity<Usuario>().Property(u => u.Senha)
-                .IsRequired(); 
+                .HasMaxLength(100)
+                .IsRequired();
+            mb.Entity<Usuario>().Property(u => u.Role)
+                .HasMaxLength(20)
+                .IsRequired();
         }
     }
 }
