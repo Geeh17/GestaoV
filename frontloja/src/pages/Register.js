@@ -1,7 +1,7 @@
-// src/pages/Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../services/api';
+import "../styles/Login.css"; 
 
 function Register() {
   const [usuarioNome, setUsuarioNome] = useState('');
@@ -13,25 +13,24 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      // Envia uma requisição para o endpoint de registro no back-end
       await axios.post('/register', { usuarioNome, senha });
       setSuccess('Usuário cadastrado com sucesso! Faça login para continuar.');
       setUsuarioNome('');
       setSenha('');
-      setTimeout(() => navigate('/login'), 3000); // Redireciona para o login após 3 segundos
+      setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
       setError('Erro ao cadastrar usuário. Tente novamente.');
     }
   };
 
   return (
-    <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+    <div className="form-container">
       <h2>Registro de Usuário</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+      {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
       <form onSubmit={handleRegister}>
-        <div>
-          <label>Nome de Usuário:</label>
+        <div className="form-group">
+          <label>Nome de Usuário: </label>
           <input
             type="text"
             value={usuarioNome}
@@ -39,8 +38,8 @@ function Register() {
             required
           />
         </div>
-        <div>
-          <label>Senha:</label>
+        <div className="form-group">
+          <label>Senha: </label>
           <input
             type="password"
             value={senha}

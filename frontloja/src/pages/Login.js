@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../services/api";
 import { jwtDecode } from "jwt-decode";
-
+import "../styles/Login.css"; 
 
 function Login() {
   const [usuarioNome, setUsuarioNome] = useState("");
@@ -16,17 +16,13 @@ function Login() {
       const response = await axios.post("/login", { usuarioNome, senha });
       const token = response.data.token;
 
-      // Armazena o token no localStorage
       localStorage.setItem("jwt_token", token);
 
-      // Decodifica o token para obter a role
       const decoded = jwtDecode(token);
       const userRole = decoded.Role;
 
-      // Armazena a role no localStorage
       localStorage.setItem("role", userRole);
 
-      // Redireciona para o Dashboard
       navigate("/dashboard");
     } catch (err) {
       setError("Login falhou. Verifique suas credenciais.");
@@ -34,11 +30,11 @@ function Login() {
   };
 
   return (
-    <div style={{ maxWidth: "300px", margin: "0 auto" }}>
+    <div className="form-container">
       <h2>Login</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleLogin}>
-        <div>
+        <div className="form-group">
           <label>Nome de Usuário:</label>
           <input
             type="text"
@@ -47,7 +43,7 @@ function Login() {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Senha:</label>
           <input
             type="password"

@@ -1,5 +1,30 @@
 [
   {
+    "ContainingType": "APILoja.ApiEndpointslogin.AutenticacaoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAutenticacaoEndpoints\u003Eb__0_3",
+    "RelativePath": "admin/users",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 403
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin"
+    ],
+    "EndpointName": "GetAllUsers"
+  },
+  {
     "ContainingType": "APILoja.ApiEndpoints.CategoriasEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_0",
     "RelativePath": "categorias",

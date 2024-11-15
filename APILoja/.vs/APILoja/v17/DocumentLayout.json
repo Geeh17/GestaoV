@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,19 +50,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20241115025202_Roles.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Migrations\\20241115025202_Roles.cs",
-              "RelativeDocumentMoniker": "APILoja\\Migrations\\20241115025202_Roles.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Migrations\\20241115025202_Roles.cs",
-              "RelativeToolTip": "APILoja\\Migrations\\20241115025202_Roles.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:52:02.715Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Models\\Usuario.cs",
@@ -71,8 +58,7 @@
               "RelativeToolTip": "APILoja\\Models\\Usuario.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:44:29.586Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T02:44:29.586Z"
             },
             {
               "$type": "Document",
@@ -84,8 +70,7 @@
               "RelativeToolTip": "APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
               "ViewState": "AgIAAFIAAAAAAAAAAAAqwF0AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:42:55.497Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T02:42:55.497Z"
             },
             {
               "$type": "Document",
@@ -97,8 +82,7 @@
               "RelativeToolTip": "APILoja\\Models\\Categoria.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:37:01.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T02:37:01.435Z"
             },
             {
               "$type": "Document",
@@ -110,8 +94,7 @@
               "RelativeToolTip": "APILoja\\Program.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAYwBMAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:35:13.126Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T02:35:13.126Z"
             },
             {
               "$type": "Document",
@@ -123,8 +106,7 @@
               "RelativeToolTip": "APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAgwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T21:54:39.008Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-14T21:54:39.008Z"
             },
             {
               "$type": "Document",
@@ -134,10 +116,22 @@
               "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
               "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
               "RelativeToolTip": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAgwEMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-14T21:53:37.028Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20241115025202_Roles.cs",
+              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Migrations\\20241115025202_Roles.cs",
+              "RelativeDocumentMoniker": "APILoja\\Migrations\\20241115025202_Roles.cs",
+              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Migrations\\20241115025202_Roles.cs",
+              "RelativeToolTip": "APILoja\\Migrations\\20241115025202_Roles.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T02:52:02.715Z"
             }
           ]
         }
