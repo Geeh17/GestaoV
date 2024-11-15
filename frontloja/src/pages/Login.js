@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../services/api";
+import { jwtDecode } from "jwt-decode";
+
 
 function Login() {
   const [usuarioNome, setUsuarioNome] = useState("");
@@ -12,7 +14,19 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post("/login", { usuarioNome, senha });
-      localStorage.setItem("jwt_token", response.data.token);
+      const token = response.data.token;
+
+      // Armazena o token no localStorage
+      localStorage.setItem("jwt_token", token);
+
+      // Decodifica o token para obter a role
+      const decoded = jwtDecode(token);
+      const userRole = decoded.Role;
+
+      // Armazena a role no localStorage
+      localStorage.setItem("role", userRole);
+
+      // Redireciona para o Dashboard
       navigate("/dashboard");
     } catch (err) {
       setError("Login falhou. Verifique suas credenciais.");

@@ -300,5 +300,35 @@
       "Autenticacao"
     ],
     "EndpointName": "Register"
+  },
+  {
+    "ContainingType": "APILoja.ApiEndpointslogin.AutenticacaoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAutenticacaoEndpoints\u003Eb__0_2",
+    "RelativePath": "users/details",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 401
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Autenticacao"
+    ],
+    "EndpointName": "GetUserDetails"
   }
 ]
