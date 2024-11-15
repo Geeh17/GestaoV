@@ -18,7 +18,6 @@ namespace APILoja.ApiEndpointslogin
                     return Results.BadRequest("Erro: Os dados de login não foram fornecidos.");
                 }
 
-                // Verificar se o usuário existe com nome e senha correspondentes
                 var usuario = await db.Usuarios
                     .FirstOrDefaultAsync(u => u.UsuarioNome == userModel.UsuarioNome && u.Senha == userModel.Senha);
 
@@ -27,18 +26,17 @@ namespace APILoja.ApiEndpointslogin
                     var tokenString = tokenService.GerarToken(app.Configuration["Jwt:Key"],
                         app.Configuration["Jwt:Issuer"],
                         app.Configuration["Jwt:Audience"],
-                        userModel);
+                        usuario); // Passa o usuário completo, incluindo a role
                     return Results.Ok(new { token = tokenString });
                 }
 
-                return Results.BadRequest("Erro: Nome de usuário ou senha incorretos.");
+                return Results.BadRequest("Erro: Credenciais inválidas.");
             })
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status200OK)
             .WithName("Login")
             .WithTags("Autenticacao");
 
-            // Endpoint de Registro
             app.MapPost("/register", [AllowAnonymous] async (Usuario userModel, AppDbContext db) =>
             {
                 if (userModel == null || string.IsNullOrEmpty(userModel.UsuarioNome) || string.IsNullOrEmpty(userModel.Senha))
@@ -46,7 +44,11 @@ namespace APILoja.ApiEndpointslogin
                     return Results.BadRequest("Erro: Nome de usuário e senha são obrigatórios.");
                 }
 
-                // Verificar se o usuário já existe pelo nome
+                if (userModel.Senha.Length < 6)
+                {
+                    return Results.BadRequest("Erro: A senha deve ter pelo menos 6 caracteres.");
+                }
+
                 var existingUser = await db.Usuarios
                     .AnyAsync(u => u.UsuarioNome == userModel.UsuarioNome);
 
@@ -55,7 +57,7 @@ namespace APILoja.ApiEndpointslogin
                     return Results.BadRequest("Erro: Nome de usuário já está em uso.");
                 }
 
-                // Adicionar novo usuário ao banco de dados
+                userModel.Role = "User"; 
                 db.Usuarios.Add(userModel);
                 await db.SaveChangesAsync();
 

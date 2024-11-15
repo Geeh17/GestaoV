@@ -8,35 +8,46 @@ namespace APILoja.ApiEndpoints
     {
         public static void MapProdutosEndpoints(this WebApplication app)
         {
-            app.MapPost("/produtos", async (Produto produto, AppDbContext db)
- => {
-     db.Produtos.Add(produto);
-     await db.SaveChangesAsync();
+            // Endpoint para criar um produto - restrito a Admin
+            app.MapPost("/produtos", async (Produto produto, AppDbContext db) => {
+                db.Produtos.Add(produto);
+                await db.SaveChangesAsync();
+                return Results.Created($"/produtos/{produto.ProdutoId}", produto);
+            }).RequireAuthorization("AdminOnly");
 
-     return Results.Created($"/produtos/{produto.ProdutoId}", produto);
- });
+            // Endpoint para listar todos os produtos com paginação
+            app.MapGet("/produtos", async (int pageNumber, int pageSize, AppDbContext db) => {
+                pageNumber = pageNumber < 1 ? 1 : pageNumber;
+                pageSize = pageSize < 1 ? 10 : pageSize;
 
-            app.MapGet("/produtos", async (AppDbContext db) => await db.Produtos.ToListAsync()).RequireAuthorization(); ;
+                var produtos = await db.Produtos
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
 
-            app.MapGet("/produtos/{id:int}", async (int id, AppDbContext db)
-                => {
-                    return await db.Produtos.FindAsync(id)
-                                 is Produto produto
-                                 ? Results.Ok(produto)
-                                 : Results.NotFound();
-                });
+                return Results.Ok(produtos);
+            }).RequireAuthorization();
 
-            app.MapPut("/produtos/{id:int}", async (int id, Produto produto, AppDbContext db) =>
-            {
+            // Endpoint para obter um produto específico por ID
+            app.MapGet("/produtos/{id:int}", async (int id, AppDbContext db) => {
+                var produto = await db.Produtos.FindAsync(id);
+                return produto != null
+                    ? Results.Ok(produto)
+                    : Results.NotFound("Produto não encontrado.");
+            }).RequireAuthorization();
 
+            // Endpoint para atualizar um produto por ID
+            app.MapPut("/produtos/{id:int}", async (int id, Produto produto, AppDbContext db) => {
                 if (produto.ProdutoId != id)
                 {
-                    return Results.BadRequest();
+                    return Results.BadRequest("Erro: O ID do produto na URL não corresponde ao ID do corpo da requisição.");
                 }
 
                 var produtoDB = await db.Produtos.FindAsync(id);
-
-                if (produtoDB is null) return Results.NotFound();
+                if (produtoDB is null)
+                {
+                    return Results.NotFound("Erro: Produto não encontrado para atualização.");
+                }
 
                 produtoDB.Nome = produto.Nome;
                 produtoDB.Descricao = produto.Descricao;
@@ -46,26 +57,21 @@ namespace APILoja.ApiEndpoints
                 produtoDB.CategoriaId = produto.CategoriaId;
 
                 await db.SaveChangesAsync();
-
                 return Results.Ok(produtoDB);
-            });
+            }).RequireAuthorization();
 
-            app.MapDelete("/produtos/{id:int}", async (int id, AppDbContext db) =>
-            {
+            // Endpoint para excluir um produto por ID - restrito a Admin
+            app.MapDelete("/produtos/{id:int}", async (int id, AppDbContext db) => {
                 var produto = await db.Produtos.FindAsync(id);
-
                 if (produto is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Produto não encontrado.");
                 }
 
                 db.Produtos.Remove(produto);
                 await db.SaveChangesAsync();
-
                 return Results.NoContent();
-            });
-
+            }).RequireAuthorization("AdminOnly");
         }
-
     }
 }

@@ -11,6 +11,11 @@ builder.AddPersistence();
 builder.Services.AddCors();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.AddAutenticationJwt();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Role", "Admin"));
+    options.AddPolicy("UserOnly", policy => policy.RequireClaim("Role", "User"));
+});
 
 var app = builder.Build();
 
