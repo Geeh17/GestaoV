@@ -1,18 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BarraLateral from './components/BarraLateral';
+import FormularioCategoria from './components/formularios/FormularioCategoria';
+import ListaCategorias from './components/formularios/ListaCategorias';
+import FormularioProduto from './components/formularios/FormularioProduto';
+import ListaProdutos from './components/formularios/ListaProdutos';
 import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
-import Painel from './pages/Painel';
+import Grafico from './components/Grafico'; 
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Cadastro />} /> 
-        <Route path="/dashboard" element={<Painel />} />
-      </Routes>
+      <div className="flex">
+        <BarraLateral />
+        <div className="flex-1 p-4">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<Grafico />} /> 
+            <Route path="/categorias/nova" element={<FormularioCategoria />} />
+            <Route path="/categorias" element={<ListaCategorias />} />
+            <Route path="/produtos/novo" element={<FormularioProduto />} />
+            <Route path="/produtos" element={<ListaProdutos />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }

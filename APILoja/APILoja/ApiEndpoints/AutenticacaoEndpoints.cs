@@ -10,7 +10,6 @@ namespace APILoja.ApiEndpointslogin
     {
         public static void MapAutenticacaoEndpoints(this WebApplication app)
         {
-            // Endpoint de Login
             app.MapPost("/login", [AllowAnonymous] async (Usuario userModel, ITokenService tokenService, AppDbContext db) =>
             {
                 if (userModel == null)
@@ -26,7 +25,7 @@ namespace APILoja.ApiEndpointslogin
                     var tokenString = tokenService.GerarToken(app.Configuration["Jwt:Key"],
                         app.Configuration["Jwt:Issuer"],
                         app.Configuration["Jwt:Audience"],
-                        usuario); // Passa o usuário completo, incluindo a role
+                        usuario); 
                     return Results.Ok(new { token = tokenString });
                 }
 
@@ -37,7 +36,6 @@ namespace APILoja.ApiEndpointslogin
             .WithName("Login")
             .WithTags("Autenticacao");
 
-            // Endpoint de Registro
             app.MapPost("/register", [AllowAnonymous] async (Usuario userModel, AppDbContext db) =>
             {
                 if (userModel == null || string.IsNullOrEmpty(userModel.UsuarioNome) || string.IsNullOrEmpty(userModel.Senha))

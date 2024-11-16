@@ -1,46 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import BarraLateral from '../components/BarraLateral';
 import Cartao from '../components/Cartao';
 import Grafico from '../components/Grafico';
-import api from '../services/api';
 
-function Painel() {
-  const [dados, setDados] = useState({
-    ganhos: 0,
-    credito: 0,
-    faturas: 0,
-    agentes: 0,
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get('/dashboard');
-        setDados(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar dados do dashboard:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+function Dashboard() {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">Bem-vindo ao Dashboard</h1>
-      <p>Aqui você verá as informações principais do sistema.</p>
-      
-      <div className="grid grid-cols-2 gap-4 mt-6">
-        <Cartao titulo="Ganhos" valor={dados.ganhos} cor="bg-blue-500" />
-        <Cartao titulo="Crédito" valor={dados.credito} cor="bg-green-500" />
-        <Cartao titulo="Faturas" valor={dados.faturas} cor="bg-purple-500" />
-        <Cartao titulo="Agentes" valor={dados.agentes} cor="bg-teal-500" />
-      </div>
-      
-      <div className="mt-8">
-        <Grafico />
+    <div className="flex">
+      <BarraLateral />
+      <div className="flex-grow p-6 bg-gray-100">
+        <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Cartao titulo="Earning" valor="40.3920" cor="bg-blue-500" />
+          <Cartao titulo="Referral Earning" valor="15.7080" cor="bg-green-500" />
+          <Cartao titulo="Total Earning" valor="56.1000" cor="bg-orange-500" />
+          <Cartao titulo="Balance / Credit" valor="29.1000" cor="bg-indigo-500" />
+          <Cartao titulo="Total Invoice" valor="6" cor="bg-purple-500" />
+          <Cartao titulo="Total Agent" valor="2" cor="bg-teal-500" />
+        </div>
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold mb-4">Sales Chart for 2015</h2>
+          <Grafico />
+        </div>
       </div>
     </div>
   );
 }
 
-export default Painel;
+export default Dashboard;

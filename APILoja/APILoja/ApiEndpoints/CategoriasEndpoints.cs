@@ -14,16 +14,38 @@ namespace APILoja.ApiEndpoints
                 return Results.Created($"/categorias/{categoria.CategoriaId}", categoria);
             }).RequireAuthorization("AdminOnly");
 
-            app.MapGet("/categorias", async (int pageNumber, int pageSize, AppDbContext db) => {
-                pageNumber = pageNumber < 1 ? 1 : pageNumber;
-                pageSize = pageSize < 1 ? 10 : pageSize;
+            app.MapGet("/categorias", async (int? pageNumber, int? pageSize, AppDbContext db) => {
+                if (pageNumber.HasValue && pageSize.HasValue)
+                {
+                    int currentPage = pageNumber.Value < 1 ? 1 : pageNumber.Value;
+                    int currentSize = pageSize.Value < 1 ? 10 : pageSize.Value;
 
-                var categorias = await db.Categorias
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
+                    var categoriasPaginadas = await db.Categorias
+                        .Include(c => c.Produtos)  
+                        .Select(c => new {
+                            c.CategoriaId,
+                            c.Nome,
+                            ProdutoCount = c.Produtos.Count 
+                        })
+                        .Skip((currentPage - 1) * currentSize)
+                        .Take(currentSize)
+                        .ToListAsync();
 
-                return Results.Ok(categorias);
+                    return Results.Ok(categoriasPaginadas);
+                }
+                else
+                {
+                    var categoriasSemPaginacao = await db.Categorias
+                        .Include(c => c.Produtos)
+                        .Select(c => new {
+                            c.CategoriaId,
+                            c.Nome,
+                            ProdutoCount = c.Produtos.Count
+                        })
+                        .ToListAsync();
+
+                    return Results.Ok(categoriasSemPaginacao);
+                }
             }).RequireAuthorization();
 
             app.MapGet("/categorias/{id:int}", async (int id, AppDbContext db) => {

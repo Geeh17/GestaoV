@@ -14,16 +14,24 @@ namespace APILoja.ApiEndpoints
                 return Results.Created($"/produtos/{produto.ProdutoId}", produto);
             }).RequireAuthorization("AdminOnly");
 
-            app.MapGet("/produtos", async (int pageNumber, int pageSize, AppDbContext db) => {
-                pageNumber = pageNumber < 1 ? 1 : pageNumber;
-                pageSize = pageSize < 1 ? 10 : pageSize;
+            app.MapGet("/produtos", async (int? pageNumber, int? pageSize, AppDbContext db) => {
+                if (pageNumber.HasValue && pageSize.HasValue)
+                {
+                    int currentPage = pageNumber.Value < 1 ? 1 : pageNumber.Value;
+                    int currentSize = pageSize.Value < 1 ? 10 : pageSize.Value;
 
-                var produtos = await db.Produtos
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
+                    var produtosPaginados = await db.Produtos
+                        .Skip((currentPage - 1) * currentSize)
+                        .Take(currentSize)
+                        .ToListAsync();
 
-                return Results.Ok(produtos);
+                    return Results.Ok(produtosPaginados);
+                }
+                else
+                {
+                    var todosProdutos = await db.Produtos.ToListAsync();
+                    return Results.Ok(todosProdutos);
+                }
             }).RequireAuthorization();
 
             app.MapGet("/produtos/{id:int}", async (int id, AppDbContext db) => {

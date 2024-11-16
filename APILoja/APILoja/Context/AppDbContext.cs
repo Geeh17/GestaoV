@@ -13,7 +13,6 @@ namespace APILoja.Context
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            // Configuração para Categoria
             mb.Entity<Categoria>().HasKey(c => c.CategoriaId);
             mb.Entity<Categoria>().Property(c => c.Nome)
                 .HasMaxLength(100)
@@ -22,7 +21,6 @@ namespace APILoja.Context
                 .HasMaxLength(150)
                 .IsRequired();
 
-            // Configuração para Produto
             mb.Entity<Produto>().HasKey(p => p.ProdutoId);
             mb.Entity<Produto>().Property(p => p.Nome)
                 .HasMaxLength(100)
@@ -36,7 +34,6 @@ namespace APILoja.Context
                 .WithMany(c => c.Produtos)
                 .HasForeignKey(p => p.CategoriaId);
 
-            // Configuração para Usuario
             mb.Entity<Usuario>().HasKey(u => u.UsuarioId);
             mb.Entity<Usuario>().Property(u => u.UsuarioId)
                 .ValueGeneratedOnAdd(); 
