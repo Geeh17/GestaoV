@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 function Cadastro() {
@@ -7,7 +7,8 @@ function Cadastro() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const navigate = useNavigate(); 
+  const [loading, setLoading] = useState(false); // Estado para carregamento
+  const navigate = useNavigate();
 
   const handleCadastro = async (e) => {
     e.preventDefault();
@@ -19,6 +20,8 @@ function Cadastro() {
       return;
     }
 
+    setLoading(true); // Inicia o carregamento
+
     try {
       const response = await api.post('/register', {
         UsuarioNome: username.trim(),
@@ -29,7 +32,7 @@ function Cadastro() {
         setSuccess('Cadastro realizado com sucesso! Redirecionando para login...');
         setUsername('');
         setPassword('');
-        
+
         setTimeout(() => {
           navigate('/login');
         }, 2000);
@@ -37,6 +40,8 @@ function Cadastro() {
     } catch (error) {
       console.error('Erro ao realizar o cadastro:', error.response ? error.response.data : error.message);
       setError(error.response?.data || 'Erro ao realizar o cadastro. Tente novamente.');
+    } finally {
+      setLoading(false); // Finaliza o carregamento
     }
   };
 
@@ -50,29 +55,36 @@ function Cadastro() {
           <label className="block text-sm font-medium">Usuário</label>
           <input
             type="text"
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            disabled={loading} // Desativa o campo durante o carregamento
           />
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium">Senha</label>
           <input
             type="password"
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            disabled={loading} // Desativa o campo durante o carregamento
           />
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
-          Cadastrar
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+          disabled={loading} // Desativa o botão durante o carregamento
+        >
+          {loading ? 'Cadastrando...' : 'Cadastrar'}
         </button>
         <button
           type="button"
-          className="w-full bg-gray-500 text-white p-2 rounded mt-2"
+          className="w-full bg-gray-500 text-white p-2 rounded mt-2 hover:bg-gray-600 transition"
           onClick={() => navigate('/login')}
+          disabled={loading} // Desativa o botão durante o carregamento
         >
           Voltar para Login
         </button>

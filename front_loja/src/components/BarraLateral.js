@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaList, FaProductHunt, FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from  'jwt-decode';
 
 function BarraLateral() {
   const [user, setUser] = useState({});
@@ -13,22 +13,53 @@ function BarraLateral() {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decoded = jwtDecode(token); 
-        setUser({
-          name: decoded.name || 'Usuário',
-          role: decoded.role || 'User',
-        });
+        const decoded = jwtDecode(token);
+        if (decoded.exp * 1000 < Date.now()) {
+          handleLogout();
+        } else {
+          setUser({
+            name: decoded.name || 'Usuário',
+            role: decoded.role || 'User',
+          });
+        }
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
+        handleLogout();
       }
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-
     navigate('/login');
   };
+
+  const Submenu = ({ title, icon: Icon, links, isOpen, toggle }) => (
+    <div>
+      <div
+        onClick={toggle}
+        className="flex items-center justify-between py-2 px-4 hover:bg-blue-700 cursor-pointer rounded"
+      >
+        <div className="flex items-center">
+          <Icon className="mr-2" /> {title}
+        </div>
+        <span>{isOpen ? '-' : '+'}</span>
+      </div>
+      {isOpen && (
+        <div className="ml-6">
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="block py-2 px-4 hover:bg-blue-600 rounded"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div className="w-64 h-screen bg-blue-900 text-white p-4 flex flex-col shadow-lg">
@@ -54,68 +85,36 @@ function BarraLateral() {
           <FaUser className="mr-2" /> Dashboard
         </Link>
 
-        <div>
-          <div
-            onClick={() => setIsCategoriaOpen(!isCategoriaOpen)}
-            className="flex items-center justify-between py-2 px-4 hover:bg-blue-700 cursor-pointer rounded"
-          >
-            <div className="flex items-center">
-              <FaList className="mr-2" /> Categorias
-            </div>
-            <span>{isCategoriaOpen ? '-' : '+'}</span>
-          </div>
-          {isCategoriaOpen && (
-            <div className="ml-6">
-              <Link
-                to="/categorias/nova"
-                className="block py-2 px-4 hover:bg-blue-600 rounded"
-              >
-                Nova Categoria
-              </Link>
-              <Link
-                to="/categorias"
-                className="block py-2 px-4 hover:bg-blue-600 rounded"
-              >
-                Listar Categorias
-              </Link>
-            </div>
-          )}
-        </div>
+        <Submenu
+          title="Categorias"
+          icon={FaList}
+          links={[
+            { path: '/categorias/nova', label: 'Nova Categoria' },
+            { path: '/categorias', label: 'Listar Categorias' },
+          ]}
+          isOpen={isCategoriaOpen}
+          toggle={() => setIsCategoriaOpen(!isCategoriaOpen)}
+        />
 
-        <div>
-          <div
-            onClick={() => setIsProdutoOpen(!isProdutoOpen)}
-            className="flex items-center justify-between py-2 px-4 hover:bg-blue-700 cursor-pointer rounded"
-          >
-            <div className="flex items-center">
-              <FaProductHunt className="mr-2" /> Produtos
-            </div>
-            <span>{isProdutoOpen ? '-' : '+'}</span>
-          </div>
-          {isProdutoOpen && (
-            <div className="ml-6">
-              <Link
-                to="/produtos/novo"
-                className="block py-2 px-4 hover:bg-blue-600 rounded"
-              >
-                Novo Produto
-              </Link>
-              <Link
-                to="/produtos"
-                className="block py-2 px-4 hover:bg-blue-600 rounded"
-              >
-                Listar Produtos
-              </Link>
-            </div>
-          )}
-        </div>
+        <Submenu
+          title="Produtos"
+          icon={FaProductHunt}
+          links={[
+            { path: '/produtos/novo', label: 'Novo Produto' },
+            { path: '/produtos', label: 'Listar Produtos' },
+          ]}
+          isOpen={isProdutoOpen}
+          toggle={() => setIsProdutoOpen(!isProdutoOpen)}
+        />
 
-        <Link
-          to="/admin-settings"
-          className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"
-        >
-          <FaCog className="mr-2" /> Configurações
-        </Link>
+        {user.role === 'Admin' && (
+          <Link
+            to="/admin-settings"
+            className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"
+          >
+            <FaCog className="mr-2" /> Configurações
+          </Link>
+        )}
 
         <button
           onClick={handleLogout}
