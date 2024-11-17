@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaList, FaProductHunt, FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaList, FaProductHunt, FaUser, FaCog, FaSignOutAlt, FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
@@ -7,6 +7,7 @@ function BarraLateral({ onLogout }) {
   const [user, setUser] = useState({ name: 'Usuário', role: 'User' });
   const [isCategoriaOpen, setIsCategoriaOpen] = useState(false);
   const [isProdutoOpen, setIsProdutoOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -18,12 +19,11 @@ function BarraLateral({ onLogout }) {
           onLogout();
         } else {
           setUser({
-            name: decoded.name || 'Usuário',
-            role: decoded.role || 'User',
+            name: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'] || 'Usuário',
+            role: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || 'User',
           });
         }
       } catch (error) {
-        console.error('Erro ao decodificar o token:', error);
         onLogout();
       }
     }
@@ -57,72 +57,77 @@ function BarraLateral({ onLogout }) {
   );
 
   return (
-    <div className="w-64 h-screen bg-blue-900 text-white p-4 flex flex-col shadow-lg">
-      <div className="flex items-center mb-8">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="User Profile"
-          className="rounded-full w-10 h-10 mr-3"
-        />
-        <div>
+    <>      
+      <button
+        className="md:hidden p-4 bg-blue-900 text-white"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        <FaBars />
+      </button>
+      <div
+        className={`fixed inset-y-0 left-0 bg-blue-900 text-white w-64 p-4 flex flex-col shadow-lg transform ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } transition-transform md:translate-x-0 md:relative md:flex`}
+      >
+        <div className="mb-8">
           <h2 className="text-lg font-bold">{user.name}</h2>
           <span className="text-sm text-green-400">
-            {user.role === 'Admin' ? 'Administrador' : 'Usuário'}
+            {user.role === 'ADM' ? 'Administrador' : 'Usuário'}
           </span>
         </div>
-      </div>
 
-      <nav className="flex-grow">
-        <Link
-          to="/dashboard"
-          className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"
-        >
-          <FaUser className="mr-2" /> Dashboard
-        </Link>
-
-        <Submenu
-          title="Categorias"
-          icon={FaList}
-          links={[
-            { path: '/categorias/nova', label: 'Nova Categoria' },
-            { path: '/categorias', label: 'Listar Categorias' },
-          ]}
-          isOpen={isCategoriaOpen}
-          toggle={() => setIsCategoriaOpen(!isCategoriaOpen)}
-        />
-
-        <Submenu
-          title="Produtos"
-          icon={FaProductHunt}
-          links={[
-            { path: '/produtos/novo', label: 'Novo Produto' },
-            { path: '/produtos', label: 'Listar Produtos' },
-          ]}
-          isOpen={isProdutoOpen}
-          toggle={() => setIsProdutoOpen(!isProdutoOpen)}
-        />
-
-        {user.role === 'Admin' && (
+        <nav className="flex-grow">
           <Link
-            to="/admin-settings"
+            to="/dashboard"
             className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"
           >
-            <FaCog className="mr-2" /> Configurações
+            <FaUser className="mr-2" /> Dashboard
           </Link>
-        )}
 
-        <button
-          onClick={onLogout}
-          className="flex items-center py-2 px-4 hover:bg-red-700 rounded mt-8 w-full text-left"
-        >
-          <FaSignOutAlt className="mr-2" /> Sair
-        </button>
-      </nav>
+          <Submenu
+            title="Categorias"
+            icon={FaList}
+            links={[
+              { path: '/categorias/nova', label: 'Nova Categoria' },
+              { path: '/categorias', label: 'Listar Categorias' },
+            ]}
+            isOpen={isCategoriaOpen}
+            toggle={() => setIsCategoriaOpen(!isCategoriaOpen)}
+          />
 
-      <footer className="mt-4 text-sm text-center">
-        <p>Trabalho Vianna 2024</p>
-      </footer>
-    </div>
+          <Submenu
+            title="Produtos"
+            icon={FaProductHunt}
+            links={[
+              { path: '/produtos/novo', label: 'Novo Produto' },
+              { path: '/produtos', label: 'Listar Produtos' },
+            ]}
+            isOpen={isProdutoOpen}
+            toggle={() => setIsProdutoOpen(!isProdutoOpen)}
+          />
+
+          {user.role === 'ADM' && (
+            <Link
+              to="/admin-settings"
+              className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"
+            >
+              <FaCog className="mr-2" /> Configurações
+            </Link>
+          )}
+
+          <button
+            onClick={onLogout}
+            className="flex items-center py-2 px-4 hover:bg-red-700 rounded mt-8 w-full text-left"
+          >
+            <FaSignOutAlt className="mr-2" /> Sair
+          </button>
+        </nav>
+
+        <footer className="mt-4 text-sm text-center">
+          <p>Trabalho Vianna 2024</p>
+        </footer>
+      </div>
+    </>
   );
 }
 

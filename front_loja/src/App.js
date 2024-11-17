@@ -18,25 +18,32 @@ function App() {
   }, []);
 
   const handleLogin = () => {
-    setIsAuthenticated(true); 
+    setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); 
-    setIsAuthenticated(false); 
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
   };
 
   return (
     <Router>
       <div className="flex h-screen">
-        {isAuthenticated && <BarraLateral onLogout={handleLogout} />}
+        {/* Exibir barra lateral apenas para usuários autenticados */}
+        {isAuthenticated && (
+          <BarraLateral onLogout={handleLogout} />
+        )}
+        {/* Ajuste dinâmico do layout principal */}
         <div className={`flex-1 ${isAuthenticated ? 'ml-64' : 'w-full'}`}>
           <Routes>
+            {/* Rota de login com redirecionamento se autenticado */}
             <Route
               path="/login"
               element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login onLogin={handleLogin} />}
             />
+            {/* Rota de registro */}
             <Route path="/register" element={<Cadastro />} />
+            {/* Rotas protegidas */}
             {isAuthenticated ? (
               <>
                 <Route path="/dashboard" element={<Painel />} />
