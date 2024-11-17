@@ -18,7 +18,7 @@ function Dashboard() {
           <Cartao titulo="Total Agent" valor="2" cor="bg-teal-500" />
         </div>
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Sales Chart for 2015</h2>
+          <h2 className="text-2xl font-bold mb-4">Trabalho Vianna 2024</h2>
           <Grafico />
         </div>
       </div>

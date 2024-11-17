@@ -6,7 +6,7 @@ import ListaCategorias from './components/formularios/ListaCategorias';
 import FormularioProduto from './components/formularios/FormularioProduto';
 import ListaProdutos from './components/formularios/ListaProdutos';
 import Login from './pages/Login';
-import Grafico from './components/Grafico'; 
+import Grafico from './components/Grafico';
 
 function App() {
   return (
@@ -16,7 +16,8 @@ function App() {
         <div className="flex-1 p-4">
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Grafico />} /> 
+            <Route path="/login" element={<Login />} /> 
+            <Route path="/dashboard" element={<Grafico />} />
             <Route path="/categorias/nova" element={<FormularioCategoria />} />
             <Route path="/categorias" element={<ListaCategorias />} />
             <Route path="/produtos/novo" element={<FormularioProduto />} />
