@@ -1,29 +1,31 @@
 import React from 'react';
-import BarraLateral from '../components/BarraLateral';
 import Cartao from '../components/Cartao';
 import Grafico from '../components/Grafico';
+import MenuPerfil from '../components/MenuPerfil';
 
-function Dashboard() {
+function Painel() {
   return (
-    <div className="flex">
-      <BarraLateral />
-      <div className="flex-grow p-6 bg-gray-100">
-        <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Cartao titulo="Earning" valor="40.3920" cor="bg-blue-500" />
-          <Cartao titulo="Referral Earning" valor="15.7080" cor="bg-green-500" />
-          <Cartao titulo="Total Earning" valor="56.1000" cor="bg-orange-500" />
-          <Cartao titulo="Balance / Credit" valor="29.1000" cor="bg-indigo-500" />
-          <Cartao titulo="Total Invoice" valor="6" cor="bg-purple-500" />
-          <Cartao titulo="Total Agent" valor="2" cor="bg-teal-500" />
+    <div className="flex-grow flex flex-col h-screen">
+      <header className="flex items-center justify-between bg-blue-900 text-white px-6 py-4">
+        <h1 className="text-xl font-bold">Dashboard</h1>
+        <MenuPerfil />
+      </header>
+
+      <main className="flex-grow bg-gray-100 p-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <Cartao titulo="Earnings" valor="40.3920" cor="bg-blue-500" />
+          <Cartao titulo="Referral Earnings" valor="15.7080" cor="bg-green-500" />
+          <Cartao titulo="Total Earnings" valor="56.1000" cor="bg-orange-500" />
+          <Cartao titulo="Balance / Credit" valor="29.1000" cor="bg-purple-500" />
         </div>
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Trabalho Vianna 2024</h2>
+
+        <section className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-lg font-bold mb-4">Sales Chart</h2>
           <Grafico />
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
 
-export default Dashboard;
+export default Painel;

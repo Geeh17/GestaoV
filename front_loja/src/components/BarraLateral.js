@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FaList, FaProductHunt, FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import { jwtDecode } from  'jwt-decode';
+import { Link } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
-function BarraLateral() {
-  const [user, setUser] = useState({});
+function BarraLateral({ onLogout }) {
+  const [user, setUser] = useState({ name: 'Usuário', role: 'User' });
   const [isCategoriaOpen, setIsCategoriaOpen] = useState(false);
   const [isProdutoOpen, setIsProdutoOpen] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -15,7 +14,8 @@ function BarraLateral() {
       try {
         const decoded = jwtDecode(token);
         if (decoded.exp * 1000 < Date.now()) {
-          handleLogout();
+          alert('Sua sessão expirou. Faça login novamente.');
+          onLogout();
         } else {
           setUser({
             name: decoded.name || 'Usuário',
@@ -24,15 +24,10 @@ function BarraLateral() {
         }
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
-        handleLogout();
+        onLogout();
       }
     }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
+  }, [onLogout]);
 
   const Submenu = ({ title, icon: Icon, links, isOpen, toggle }) => (
     <div>
@@ -117,7 +112,7 @@ function BarraLateral() {
         )}
 
         <button
-          onClick={handleLogout}
+          onClick={onLogout}
           className="flex items-center py-2 px-4 hover:bg-red-700 rounded mt-8 w-full text-left"
         >
           <FaSignOutAlt className="mr-2" /> Sair

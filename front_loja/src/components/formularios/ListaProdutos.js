@@ -4,7 +4,7 @@ function ListaProdutos() {
   const [produtos, setProdutos] = useState([]);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(5); 
+  const [pageSize] = useState(10); 
 
   useEffect(() => {
     const fetchProdutos = async () => {

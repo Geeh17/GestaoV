@@ -7,7 +7,7 @@ function Cadastro() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [loading, setLoading] = useState(false); // Estado para carregamento
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleCadastro = async (e) => {
@@ -20,7 +20,7 @@ function Cadastro() {
       return;
     }
 
-    setLoading(true); // Inicia o carregamento
+    setLoading(true); 
 
     try {
       const response = await api.post('/register', {
@@ -41,7 +41,7 @@ function Cadastro() {
       console.error('Erro ao realizar o cadastro:', error.response ? error.response.data : error.message);
       setError(error.response?.data || 'Erro ao realizar o cadastro. Tente novamente.');
     } finally {
-      setLoading(false); // Finaliza o carregamento
+      setLoading(false); 
     }
   };
 
@@ -59,7 +59,7 @@ function Cadastro() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            disabled={loading} // Desativa o campo durante o carregamento
+            disabled={loading} 
           />
         </div>
         <div className="mb-4">
@@ -70,13 +70,13 @@ function Cadastro() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            disabled={loading} // Desativa o campo durante o carregamento
+            disabled={loading} 
           />
         </div>
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-          disabled={loading} // Desativa o botão durante o carregamento
+          disabled={loading} 
         >
           {loading ? 'Cadastrando...' : 'Cadastrar'}
         </button>
@@ -84,7 +84,7 @@ function Cadastro() {
           type="button"
           className="w-full bg-gray-500 text-white p-2 rounded mt-2 hover:bg-gray-600 transition"
           onClick={() => navigate('/login')}
-          disabled={loading} // Desativa o botão durante o carregamento
+          disabled={loading}
         >
           Voltar para Login
         </button>
