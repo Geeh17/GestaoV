@@ -14,28 +14,52 @@ namespace APILoja.ApiEndpoints
                 return Results.Created($"/produtos/{produto.ProdutoId}", produto);
             }).RequireAuthorization("AdminOnly");
 
-            app.MapGet("/produtos", async (int? pageNumber, int? pageSize, AppDbContext db) => {
+            app.MapGet("/produtos", async (int? pageNumber, int? pageSize, int? categoriaId, AppDbContext db) => {
+                var query = db.Produtos.Include(p => p.Categoria).AsQueryable();
+
+                if (categoriaId.HasValue)
+                {
+                    query = query.Where(p => p.CategoriaId == categoriaId.Value);
+                }
+
                 if (pageNumber.HasValue && pageSize.HasValue)
                 {
                     int currentPage = pageNumber.Value < 1 ? 1 : pageNumber.Value;
                     int currentSize = pageSize.Value < 1 ? 10 : pageSize.Value;
 
-                    var produtosPaginados = await db.Produtos
-                        .Skip((currentPage - 1) * currentSize)
-                        .Take(currentSize)
-                        .ToListAsync();
+                    query = query.Skip((currentPage - 1) * currentSize).Take(currentSize);
+                }
 
-                    return Results.Ok(produtosPaginados);
-                }
-                else
-                {
-                    var todosProdutos = await db.Produtos.ToListAsync();
-                    return Results.Ok(todosProdutos);
-                }
+                var produtos = await query
+                    .Select(p => new {
+                        p.ProdutoId,
+                        p.Nome,
+                        p.Descricao,
+                        p.Preco,
+                        p.DataCompra,
+                        p.Estoque,
+                        CategoriaNome = p.Categoria != null ? p.Categoria.Nome : "Sem categoria"
+                    })
+                    .ToListAsync();
+
+                return Results.Ok(produtos);
             }).RequireAuthorization();
 
             app.MapGet("/produtos/{id:int}", async (int id, AppDbContext db) => {
-                var produto = await db.Produtos.FindAsync(id);
+                var produto = await db.Produtos
+                    .Include(p => p.Categoria)
+                    .Where(p => p.ProdutoId == id)
+                    .Select(p => new {
+                        p.ProdutoId,
+                        p.Nome,
+                        p.Descricao,
+                        p.Preco,
+                        p.DataCompra,
+                        p.Estoque,
+                        CategoriaNome = p.Categoria != null ? p.Categoria.Nome : "Sem categoria"
+                    })
+                    .FirstOrDefaultAsync();
+
                 return produto != null
                     ? Results.Ok(produto)
                     : Results.NotFound("Produto não encontrado.");

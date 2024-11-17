@@ -76,6 +76,22 @@
   {
     "ContainingType": "APILoja.ApiEndpoints.CategoriasEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_2",
+    "RelativePath": "categorias-filtro",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APILoja.ApiEndpoints.CategoriasEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_3",
     "RelativePath": "categorias/{id:int}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -97,7 +113,7 @@
   },
   {
     "ContainingType": "APILoja.ApiEndpoints.CategoriasEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_3",
+    "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_4",
     "RelativePath": "categorias/{id:int}",
     "HttpMethod": "PUT",
     "IsController": false,
@@ -124,7 +140,7 @@
   },
   {
     "ContainingType": "APILoja.ApiEndpoints.CategoriasEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_4",
+    "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_5",
     "RelativePath": "categorias/{id:int}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -212,6 +228,11 @@
       },
       {
         "Name": "pageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "categoriaId",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }

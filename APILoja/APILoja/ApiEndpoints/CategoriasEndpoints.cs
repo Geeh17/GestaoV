@@ -15,41 +15,57 @@ namespace APILoja.ApiEndpoints
             }).RequireAuthorization("AdminOnly");
 
             app.MapGet("/categorias", async (int? pageNumber, int? pageSize, AppDbContext db) => {
+                var query = db.Categorias.AsQueryable();
+
                 if (pageNumber.HasValue && pageSize.HasValue)
                 {
                     int currentPage = pageNumber.Value < 1 ? 1 : pageNumber.Value;
                     int currentSize = pageSize.Value < 1 ? 10 : pageSize.Value;
 
-                    var categoriasPaginadas = await db.Categorias
-                        .Include(c => c.Produtos)  
-                        .Select(c => new {
-                            c.CategoriaId,
-                            c.Nome,
-                            ProdutoCount = c.Produtos.Count 
-                        })
-                        .Skip((currentPage - 1) * currentSize)
-                        .Take(currentSize)
-                        .ToListAsync();
-
-                    return Results.Ok(categoriasPaginadas);
+                    query = query.Skip((currentPage - 1) * currentSize).Take(currentSize);
                 }
-                else
-                {
-                    var categoriasSemPaginacao = await db.Categorias
-                        .Include(c => c.Produtos)
-                        .Select(c => new {
-                            c.CategoriaId,
-                            c.Nome,
-                            ProdutoCount = c.Produtos.Count
-                        })
-                        .ToListAsync();
 
-                    return Results.Ok(categoriasSemPaginacao);
-                }
+                var categorias = await query
+                    .Select(c => new {
+                        c.CategoriaId,
+                        c.Nome,
+                        c.Descricao, 
+                        ProdutoCount = c.Produtos.Count 
+                    })
+                    .ToListAsync();
+
+                return Results.Ok(categorias);
+            }).RequireAuthorization();
+
+            app.MapGet("/categorias-filtro", async (AppDbContext db) => {
+                var categorias = await db.Categorias
+                    .Select(c => new {
+                        c.CategoriaId,
+                        c.Nome,
+                        c.Descricao 
+                    })
+                    .ToListAsync();
+
+                return Results.Ok(categorias);
             }).RequireAuthorization();
 
             app.MapGet("/categorias/{id:int}", async (int id, AppDbContext db) => {
-                var categoria = await db.Categorias.FindAsync(id);
+                var categoria = await db.Categorias
+                    .Include(c => c.Produtos) 
+                    .Where(c => c.CategoriaId == id)
+                    .Select(c => new {
+                        c.CategoriaId,
+                        c.Nome,
+                        c.Descricao,
+                        Produtos = c.Produtos.Select(p => new {
+                            p.ProdutoId,
+                            p.Nome,
+                            p.Preco,
+                            p.Estoque
+                        })
+                    })
+                    .FirstOrDefaultAsync();
+
                 return categoria != null
                     ? Results.Ok(categoria)
                     : Results.NotFound("Categoria não encontrada.");

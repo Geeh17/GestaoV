@@ -1,38 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 function ListaProdutos() {
   const [produtos, setProdutos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10); 
+  const [pageSize] = useState(10);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchProdutos = async () => {
+    const fetchCategorias = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(
-          `http://localhost:5238/produtos?pageNumber=${currentPage}&pageSize=${pageSize}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:5238/categorias", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`Erro na API: ${response.statusText}`);
         }
 
         const data = await response.json();
-        setProdutos(data); 
+        setCategorias(data);
       } catch (err) {
-        console.error('Erro ao buscar produtos:', err.message);
+        console.error("Erro ao buscar categorias:", err.message);
+      }
+    };
+
+    fetchCategorias();
+  }, []);
+
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        const url = `http://localhost:5238/produtos?pageNumber=${currentPage}&pageSize=${pageSize}${
+          categoriaSelecionada ? `&categoriaId=${categoriaSelecionada}` : ""
+        }`;
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro na API: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setProdutos(data);
+      } catch (err) {
+        console.error("Erro ao buscar produtos:", err.message);
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProdutos();
-  }, [currentPage, pageSize]); 
+  }, [currentPage, pageSize, categoriaSelecionada]);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -51,8 +81,29 @@ function ListaProdutos() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Lista de Produtos</h1>
-      
-      {produtos.length === 0 ? (
+
+      <div className="mb-4">
+        <label htmlFor="categoria" className="block font-medium mb-2">
+          Filtrar por Categoria:
+        </label>
+        <select
+          id="categoria"
+          value={categoriaSelecionada}
+          onChange={(e) => setCategoriaSelecionada(e.target.value)}
+          className="border rounded px-4 py-2 w-full"
+        >
+          <option value="">Todas as Categorias</option>
+          {categorias.map((categoria) => (
+            <option key={categoria.categoriaId} value={categoria.categoriaId}>
+              {categoria.nome}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {loading ? (
+        <p className="text-gray-500">Carregando produtos...</p>
+      ) : produtos.length === 0 ? (
         <p className="text-gray-500 mb-4">Nenhum produto encontrado.</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -64,16 +115,16 @@ function ListaProdutos() {
               <h2 className="font-bold text-lg">{produto.nome}</h2>
               <p className="text-gray-700">Preço: R${produto.preco.toFixed(2)}</p>
               <p className="text-gray-700">
-                Estoque: {produto.estoque || 'Não informado'}
+                Estoque: {produto.estoque || "Não informado"}
               </p>
               <p className="text-gray-700">
-                Categoria: {produto.categoriaNome || 'Sem categoria'}
+                Categoria: {produto.categoriaNome || "Sem categoria"}
               </p>
             </div>
           ))}
         </div>
       )}
-    
+
       <div className="flex justify-between mt-6">
         <button
           onClick={handlePreviousPage}
