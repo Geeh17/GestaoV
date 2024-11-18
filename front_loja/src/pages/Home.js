@@ -52,8 +52,8 @@ function Home() {
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="flex items-center justify-center h-screen bg-gray-100">
   <div className="text-center p-8 bg-white shadow-lg rounded-lg max-w-4xl w-full">
-    <h1 className="text-4xl font-bold mb-6 text-blue-800">Bem-vindo ao Sistema de Gestão</h1>
-    <p className="text-lg text-gray-600 mb-8">
+    <h1 className="text-4xl font-bold mb-6 text-blue-800">Bem-vindo a loja Gestao V</h1>
+    <p className="text-lg font-bold text-gray-600 mb-8">
       Utilize o menu lateral para navegar entre as funcionalidades do sistema.
     </p>
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
