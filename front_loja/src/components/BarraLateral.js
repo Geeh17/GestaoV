@@ -67,7 +67,7 @@ function BarraLateral({ onLogout }) {
       <div
         className={`fixed inset-y-0 left-0 bg-blue-900 text-white w-64 p-4 flex flex-col shadow-lg transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform md:translate-x-0 md:relative md:flex`}
+        } transition-transform lg:translate-x-0 lg:relative`}
       >
         <div className="mb-8">
           <h2 className="text-lg font-bold">{user.name}</h2>
@@ -128,11 +128,7 @@ function BarraLateral({ onLogout }) {
           >
             <FaSignOutAlt className="mr-2" /> Sair
           </button>
-        </nav>
-
-        <footer className="mt-4 text-sm text-center">
-          <p>Trabalho Vianna 2024</p>
-        </footer>
+        </nav>       
       </div>
     </>
   );

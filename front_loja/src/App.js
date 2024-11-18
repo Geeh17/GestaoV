@@ -8,7 +8,7 @@ import ListaProdutos from './components/formularios/ListaProdutos';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Painel from './pages/Painel';
-import Home from './pages/Home'; 
+import Home from './pages/Home';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,9 +31,11 @@ function App() {
     <Router>
       <div className="flex h-screen">
         {isAuthenticated && (
-          <BarraLateral onLogout={handleLogout} />
+          <div className="w-64 fixed h-screen bg-blue-900 text-white flex flex-col">
+            <BarraLateral onLogout={handleLogout} />
+          </div>
         )}
-        <div className={`flex-1 ${isAuthenticated ? 'ml-64' : 'w-full'}`}>
+        <div className={`flex-1 ${isAuthenticated ? 'ml-64' : 'w-full'} bg-gray-100`}>
           <Routes>
             <Route
               path="/login"
@@ -43,7 +45,7 @@ function App() {
 
             {isAuthenticated ? (
               <>
-                <Route path="/" element={<Home />} /> 
+                <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Painel />} />
                 <Route path="/categorias/nova" element={<FormularioCategoria />} />
                 <Route path="/categorias" element={<ListaCategorias />} />
