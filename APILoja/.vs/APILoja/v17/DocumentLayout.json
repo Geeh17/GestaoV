@@ -3,20 +3,13 @@
   "WorkspaceRootPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\apiendpoints\\categoriasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\categoriasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Geraldo Luiz\\AppData\\Local\\Temp\\vebx45mo..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Geraldo Luiz\\AppData\\Local\\Temp\\vebx45mo..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\apiendpoints\\produtosendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\produtosendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Geraldo Luiz\\AppData\\Local\\Temp\\vebx45mo..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,53 +32,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CategoriasEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "RelativeToolTip": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAgwGYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T18:43:00.343Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProdutosEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "RelativeToolTip": "APILoja\\ApiEndpoints\\ProdutosEndpoints.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T18:40:58.298Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Services\\TokenService.cs",
-              "RelativeDocumentMoniker": "APILoja\\Services\\TokenService.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Services\\TokenService.cs",
-              "RelativeToolTip": "APILoja\\Services\\TokenService.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T04:08:10.399Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Program.cs",
-              "RelativeDocumentMoniker": "APILoja\\Program.cs",
-              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Program.cs",
-              "RelativeToolTip": "APILoja\\Program.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAAA8AAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T23:59:27.963Z",
+              "Title": "SQLQuery1.sql ",
+              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\AppData\\Local\\Temp\\vebx45mo..sql",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\vebx45mo..sql",
+              "ToolTip": "SQLQuery1.sql *",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-18T01:57:52.552Z",
               "EditorCaption": ""
             }
           ]

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaList, FaProductHunt, FaUser, FaCog, FaSignOutAlt, FaBars } from 'react-icons/fa';
+import { FaList, FaProductHunt, FaUser, FaCog, FaSignOutAlt, FaBars, FaHome } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
@@ -57,7 +57,7 @@ function BarraLateral({ onLogout }) {
   );
 
   return (
-    <>      
+    <>
       <button
         className="md:hidden p-4 bg-blue-900 text-white"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -77,6 +77,13 @@ function BarraLateral({ onLogout }) {
         </div>
 
         <nav className="flex-grow">
+          <Link
+            to="/"
+            className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"
+          >
+            <FaHome className="mr-2" /> Tela Inicial
+          </Link>
+
           <Link
             to="/dashboard"
             className="flex items-center py-2 px-4 hover:bg-blue-700 rounded mb-2"

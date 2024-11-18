@@ -8,6 +8,7 @@ import ListaProdutos from './components/formularios/ListaProdutos';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Painel from './pages/Painel';
+import Home from './pages/Home'; 
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,23 +30,20 @@ function App() {
   return (
     <Router>
       <div className="flex h-screen">
-        {/* Exibir barra lateral apenas para usuários autenticados */}
         {isAuthenticated && (
           <BarraLateral onLogout={handleLogout} />
         )}
-        {/* Ajuste dinâmico do layout principal */}
         <div className={`flex-1 ${isAuthenticated ? 'ml-64' : 'w-full'}`}>
           <Routes>
-            {/* Rota de login com redirecionamento se autenticado */}
             <Route
               path="/login"
-              element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login onLogin={handleLogin} />}
+              element={isAuthenticated ? <Navigate to="/" replace /> : <Login onLogin={handleLogin} />}
             />
-            {/* Rota de registro */}
             <Route path="/register" element={<Cadastro />} />
-            {/* Rotas protegidas */}
+
             {isAuthenticated ? (
               <>
+                <Route path="/" element={<Home />} /> 
                 <Route path="/dashboard" element={<Painel />} />
                 <Route path="/categorias/nova" element={<FormularioCategoria />} />
                 <Route path="/categorias" element={<ListaCategorias />} />
