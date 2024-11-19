@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import BarraLateral from "./components/BarraLateral";
-import FormularioCategoria from "./components/formularios/FormularioCategoria";
-import ListaCategorias from "./components/formularios/ListaCategorias";
-import FormularioProduto from "./components/formularios/FormularioProduto";
-import ListaProdutos from "./components/formularios/ListaProdutos";
-import Login from "./pages/Login";
-import Cadastro from "./pages/Cadastro";
-import Painel from "./pages/Painel";
-import Home from "./pages/Home";
-import AdminSettings from "./pages/AdminSettings"; 
+import AppRoutes from "./routes/routes"; // Corrija o caminho, se necessário
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -41,7 +33,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsAuthenticated(false);
-    setUser(null); 
+    setUser(null);
   };
 
   return (
@@ -57,36 +49,7 @@ function App() {
             isAuthenticated ? "ml-64" : "w-full"
           } bg-gray-100`}
         >
-          <Routes>
-            <Route
-              path="/login"
-              element={
-                isAuthenticated ? (
-                  <Navigate to="/" replace />
-                ) : (
-                  <Login onLogin={handleLogin} />
-                )
-              }
-            />
-            <Route path="/register" element={<Cadastro />} />
-
-            {isAuthenticated ? (
-              <>
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Painel />} />
-                <Route
-                  path="/categorias/nova"
-                  element={<FormularioCategoria />}
-                />
-                <Route path="/categorias" element={<ListaCategorias />} />
-                <Route path="/produtos/novo" element={<FormularioProduto />} />
-                <Route path="/produtos" element={<ListaProdutos />} />
-                <Route path="/admin-settings" element={<AdminSettings />} />
-              </>
-            ) : (
-              <Route path="*" element={<Navigate to="/login" replace />} />
-            )}
-          </Routes>
+          <AppRoutes isAuthenticated={isAuthenticated} onLogin={handleLogin} />
         </div>
       </div>
     </Router>
