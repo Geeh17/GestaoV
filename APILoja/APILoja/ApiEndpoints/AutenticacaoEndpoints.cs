@@ -56,7 +56,10 @@ namespace APILoja.ApiEndpointslogin
                     return Results.BadRequest("Erro: Nome de usuário já está em uso.");
                 }
 
-                userModel.Role = "User";
+                if (string.IsNullOrWhiteSpace(userModel.Role) || (userModel.Role != "User" && userModel.Role != "ADM"))
+                {
+                    userModel.Role = "User"; 
+                }
                 db.Usuarios.Add(userModel);
                 await db.SaveChangesAsync();
 
@@ -112,7 +115,24 @@ namespace APILoja.ApiEndpointslogin
             .WithName("GetAllUsers")
             .WithTags("Admin");
 
-        }
+            app.MapDelete("/admin/users/{id}", [Authorize(Roles = "ADM")] async (int id, AppDbContext db) =>
+            {
+                var usuario = await db.Usuarios.FindAsync(id);
 
+                if (usuario == null)
+                {
+                    return Results.NotFound("Usuário não encontrado.");
+                }
+
+                db.Usuarios.Remove(usuario);
+                await db.SaveChangesAsync();
+
+                return Results.Ok("Usuário deletado com sucesso.");
+            })
+            .Produces(StatusCodes.Status404NotFound)
+            .Produces(StatusCodes.Status200OK)
+            .WithName("DeleteUser")
+            .WithTags("Admin");
+        }
     }
 }
