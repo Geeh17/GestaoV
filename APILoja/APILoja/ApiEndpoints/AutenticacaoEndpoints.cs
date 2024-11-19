@@ -25,7 +25,7 @@ namespace APILoja.ApiEndpointslogin
                     var tokenString = tokenService.GerarToken(app.Configuration["Jwt:Key"],
                         app.Configuration["Jwt:Issuer"],
                         app.Configuration["Jwt:Audience"],
-                        usuario); 
+                        usuario);
                     return Results.Ok(new { token = tokenString });
                 }
 
@@ -58,7 +58,7 @@ namespace APILoja.ApiEndpointslogin
 
                 if (string.IsNullOrWhiteSpace(userModel.Role) || (userModel.Role != "User" && userModel.Role != "ADM"))
                 {
-                    userModel.Role = "User"; 
+                    userModel.Role = "User";
                 }
                 db.Usuarios.Add(userModel);
                 await db.SaveChangesAsync();
@@ -132,6 +132,68 @@ namespace APILoja.ApiEndpointslogin
             .Produces(StatusCodes.Status404NotFound)
             .Produces(StatusCodes.Status200OK)
             .WithName("DeleteUser")
+            .WithTags("Admin");
+            app.MapPut("/admin/users/{id}", [Authorize(Roles = "ADM")] async (int id, Usuario userModel, AppDbContext db) =>
+            {
+                var usuario = await db.Usuarios.FindAsync(id);
+
+                if (usuario == null)
+                {
+                    return Results.NotFound("Usuário não encontrado.");
+                }
+
+                if (string.IsNullOrEmpty(userModel.UsuarioNome) || string.IsNullOrEmpty(userModel.Senha))
+                {
+                    return Results.BadRequest("Erro: Nome de usuário e senha são obrigatórios.");
+                }
+
+                if (userModel.Senha.Length < 6)
+                {
+                    return Results.BadRequest("Erro: A senha deve ter pelo menos 6 caracteres.");
+                }
+
+                var existingUser = await db.Usuarios
+                    .AnyAsync(u => u.UsuarioNome == userModel.UsuarioNome && u.UsuarioId != id);
+
+                if (existingUser)
+                {
+                    return Results.BadRequest("Erro: Nome de usuário já está em uso por outro usuário.");
+                }
+
+                usuario.UsuarioNome = userModel.UsuarioNome;
+                usuario.Senha = userModel.Senha;
+                usuario.Role = userModel.Role;
+
+                db.Usuarios.Update(usuario);
+                await db.SaveChangesAsync();
+
+                return Results.Ok("Usuário atualizado com sucesso.");
+            })
+            .Produces(StatusCodes.Status404NotFound)
+            .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status200OK)
+            .WithName("UpdateUser")
+            .WithTags("Admin");
+
+            app.MapGet("/admin/users/{id}", [Authorize(Roles = "ADM")] async (int id, AppDbContext db) =>
+            {
+                var usuario = await db.Usuarios.FindAsync(id);
+
+                if (usuario == null)
+                {
+                    return Results.NotFound("Usuário não encontrado.");
+                }
+
+                return Results.Ok(new
+                {
+                    UsuarioId = usuario.UsuarioId,
+                    UsuarioNome = usuario.UsuarioNome,
+                    Role = usuario.Role
+                });
+            })
+            .Produces(StatusCodes.Status404NotFound)
+            .Produces(StatusCodes.Status200OK)
+            .WithName("GetUserById")
             .WithTags("Admin");
         }
     }

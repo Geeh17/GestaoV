@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\apiendpoints\\autenticacaoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\autenticacaoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\loja\\apiloja\\apiloja\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,13 +30,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Program.cs",
+              "RelativeDocumentMoniker": "APILoja\\Program.cs",
+              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\Program.cs",
+              "RelativeToolTip": "APILoja\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAswC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T15:42:08.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AutenticacaoEndpoints.cs",
               "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
               "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
               "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
               "RelativeToolTip": "APILoja\\ApiEndpoints\\AutenticacaoEndpoints.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAqwLkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-18T23:53:25.599Z",
               "EditorCaption": ""

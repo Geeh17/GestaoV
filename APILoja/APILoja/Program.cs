@@ -1,6 +1,5 @@
 using APILoja.AppServicesExtensions;
 using APILoja.ApiEndpoints;
-using APILoja.AppServicesExtensions;
 using APILoja.Services;
 using APILoja.ApiEndpointslogin;
 
@@ -8,7 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddApiSwagger();
 builder.AddPersistence();
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.AddAutenticationJwt();
 builder.Services.AddAuthorization(options =>
@@ -20,17 +27,13 @@ builder.Services.AddAuthorization(options =>
 var app = builder.Build();
 
 app.MapAutenticacaoEndpoints();
-Console.WriteLine("Registrando o endpoint /users/details");
-
 app.MapCategoriasEndpoints();
 app.MapProdutosEndpoints();
 
 var environment = app.Environment;
-app.UseExceptionHandling(environment)
-    .UseSwaggerMiddleware()
-    .UseAppCors();
+app.UseExceptionHandling(environment).UseSwaggerMiddleware();
 
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.Run();

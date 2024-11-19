@@ -56,6 +56,78 @@
     "EndpointName": "DeleteUser"
   },
   {
+    "ContainingType": "APILoja.ApiEndpointslogin.AutenticacaoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAutenticacaoEndpoints\u003Eb__0_5",
+    "RelativePath": "admin/users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userModel",
+        "Type": "APILoja.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin"
+    ],
+    "EndpointName": "UpdateUser"
+  },
+  {
+    "ContainingType": "APILoja.ApiEndpointslogin.AutenticacaoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAutenticacaoEndpoints\u003Eb__0_6",
+    "RelativePath": "admin/users/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin"
+    ],
+    "EndpointName": "GetUserById"
+  },
+  {
     "ContainingType": "APILoja.ApiEndpoints.CategoriasEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapCategoriasEndpoints\u003Eb__0_0",
     "RelativePath": "categorias",

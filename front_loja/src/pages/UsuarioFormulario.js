@@ -16,7 +16,7 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
             type="text"
             id="UsuarioNome"
             name="UsuarioNome"
-            value={user.UsuarioNome}
+            value={user.UsuarioNome || ""}
             onChange={(e) => onChange({ ...user, UsuarioNome: e.target.value })}
             className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -27,7 +27,7 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
             type="password"
             id="Senha"
             name="Senha"
-            value={user.Senha}
+            value={user.Senha || ""}
             onChange={(e) => onChange({ ...user, Senha: e.target.value })}
             className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -37,7 +37,7 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
           <select
             id="Role"
             name="Role"
-            value={user.Role}
+            value={user.Role || "User"}
             onChange={(e) => onChange({ ...user, Role: e.target.value })}
             className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
