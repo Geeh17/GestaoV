@@ -15,28 +15,34 @@ namespace APILoja.Context
         {
             mb.Entity<Categoria>().HasKey(c => c.CategoriaId);
             mb.Entity<Categoria>().Property(c => c.Nome)
-                .HasMaxLength(100)
+                .HasMaxLength(50) 
                 .IsRequired();
             mb.Entity<Categoria>().Property(c => c.Descricao)
-                .HasMaxLength(150)
-                .IsRequired();
+                .HasMaxLength(150);
 
             mb.Entity<Produto>().HasKey(p => p.ProdutoId);
             mb.Entity<Produto>().Property(p => p.Nome)
                 .HasMaxLength(100)
                 .IsRequired();
             mb.Entity<Produto>().Property(p => p.Descricao)
-                .HasMaxLength(150);
-            mb.Entity<Produto>().Property(p => p.Preco).HasPrecision(14, 2);
+                .HasMaxLength(250);
+            mb.Entity<Produto>().Property(p => p.Preco)
+                .HasPrecision(14, 2)
+                .IsRequired();
+            mb.Entity<Produto>().Property(p => p.DataCompra)
+                .IsRequired();
+            mb.Entity<Produto>().Property(p => p.Estoque)
+                .IsRequired();
 
             mb.Entity<Produto>()
-                .HasOne<Categoria>(p => p.Categoria)
+                .HasOne(p => p.Categoria)
                 .WithMany(c => c.Produtos)
-                .HasForeignKey(p => p.CategoriaId);
+                .HasForeignKey(p => p.CategoriaId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             mb.Entity<Usuario>().HasKey(u => u.UsuarioId);
             mb.Entity<Usuario>().Property(u => u.UsuarioId)
-                .ValueGeneratedOnAdd(); 
+                .ValueGeneratedOnAdd();
             mb.Entity<Usuario>().Property(u => u.UsuarioNome)
                 .HasMaxLength(50)
                 .IsRequired();
@@ -46,6 +52,10 @@ namespace APILoja.Context
             mb.Entity<Usuario>().Property(u => u.Role)
                 .HasMaxLength(20)
                 .IsRequired();
+
+            mb.Entity<Categoria>()
+                .HasIndex(c => c.Nome)
+                .IsUnique(); 
         }
     }
 }

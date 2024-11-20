@@ -13,6 +13,7 @@ namespace APILoja.Models
 
         [StringLength(150, ErrorMessage = "A descrição não pode exceder 150 caracteres.")]
         public string? Descricao { get; set; }
+
         [JsonIgnore]
         public ICollection<Produto>? Produtos { get; set; }
     }

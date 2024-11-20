@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace APILoja.Models
 {
     public class Produto
@@ -24,8 +23,9 @@ namespace APILoja.Models
         [Range(0, int.MaxValue, ErrorMessage = "O estoque não pode ser negativo.")]
         public int Estoque { get; set; }
 
-        [Required(ErrorMessage = "A categoria é obrigatória.")]
+        [Required(ErrorMessage = "O ID da categoria é obrigatório.")]
         public int CategoriaId { get; set; }
+
         [JsonIgnore]
         public Categoria? Categoria { get; set; }
     }
