@@ -8,12 +8,12 @@ namespace APILoja.ApiEndpoints
     {
         public static void MapCategoriasEndpoints(this WebApplication app)
         {
-            app.MapPost("/categorias", async (Categoria categoria, AppDbContext db) => {
+            app.MapPost("/categorias", async (Categoria categoria, AppDbContext db) =>
+            {
                 db.Categorias.Add(categoria);
                 await db.SaveChangesAsync();
                 return Results.Created($"/categorias/{categoria.CategoriaId}", categoria);
-            }).RequireAuthorization("AdminOnly");
-
+            }).RequireAuthorization();
             app.MapGet("/categorias", async (int? pageNumber, int? pageSize, AppDbContext db) => {
                 var query = db.Categorias.AsQueryable();
 
@@ -29,8 +29,8 @@ namespace APILoja.ApiEndpoints
                     .Select(c => new {
                         c.CategoriaId,
                         c.Nome,
-                        c.Descricao, 
-                        ProdutoCount = c.Produtos.Count 
+                        c.Descricao,
+                        ProdutoCount = c.Produtos.Count
                     })
                     .ToListAsync();
 
@@ -42,7 +42,7 @@ namespace APILoja.ApiEndpoints
                     .Select(c => new {
                         c.CategoriaId,
                         c.Nome,
-                        c.Descricao 
+                        c.Descricao
                     })
                     .ToListAsync();
 
@@ -51,7 +51,7 @@ namespace APILoja.ApiEndpoints
 
             app.MapGet("/categorias/{id:int}", async (int id, AppDbContext db) => {
                 var categoria = await db.Categorias
-                    .Include(c => c.Produtos) 
+                    .Include(c => c.Produtos)
                     .Where(c => c.CategoriaId == id)
                     .Select(c => new {
                         c.CategoriaId,
@@ -99,7 +99,7 @@ namespace APILoja.ApiEndpoints
                 db.Categorias.Remove(categoria);
                 await db.SaveChangesAsync();
                 return Results.NoContent();
-            }).RequireAuthorization("AdminOnly");
+            }).RequireAuthorization("AdminOrUser"); 
         }
     }
 }
