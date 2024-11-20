@@ -1,147 +1,100 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
 
-function ListaProdutos() {
+function ListarProdutos() {
   const [produtos, setProdutos] = useState([]);
-  const [categorias, setCategorias] = useState([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
-  const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchCategorias = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5238/categorias", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Erro na API: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setCategorias(data);
-      } catch (err) {
-        console.error("Erro ao buscar categorias:", err.message);
-      }
-    };
-
-    fetchCategorias();
-  }, []);
+  const [error, setError] = useState('');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const fetchProdutos = async () => {
-      setLoading(true);
       try {
-        const token = localStorage.getItem("token");
-        const url = `http://localhost:5238/produtos?pageNumber=${currentPage}&pageSize=${pageSize}${
-          categoriaSelecionada ? `&categoriaId=${categoriaSelecionada}` : ""
-        }`;
-        const response = await fetch(url, {
+        const response = await fetch('http://localhost:5238/produtos', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        if (!response.ok) {
-          throw new Error(`Erro na API: ${response.statusText}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProdutos(data);
+        } else {
+          setError('Erro ao buscar produtos.');
         }
-
-        const data = await response.json();
-        setProdutos(data);
-      } catch (err) {
-        console.error("Erro ao buscar produtos:", err.message);
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+        setError('Erro ao buscar produtos. Tente novamente mais tarde.');
       }
     };
 
     fetchProdutos();
-  }, [currentPage, pageSize, categoriaSelecionada]);
+  }, []);
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
+  const handleDelete = async (id) => {
+    if (window.confirm('Tem certeza que deseja excluir este produto?')) {
+      try {
+        const response = await fetch(`http://localhost:5238/produtos/${id}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
+        if (response.ok) {
+          setProdutos(produtos.filter((produto) => produto.produtoId !== id));
+          alert('Produto excluído com sucesso!');
+        } else {
+          setError('Erro ao excluir produto.');
+        }
+      } catch (error) {
+        console.error('Erro ao excluir produto:', error);
+        setError('Erro ao excluir produto. Tente novamente mais tarde.');
+      }
     }
   };
 
-  if (error) {
-    return <p className="text-red-500">Erro: {error}</p>;
-  }
-
   return (
-    <div>
-      <h1 className="text-xl font-bold mb-4">Lista de Produtos</h1>
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md mt-10">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Listar Produtos</h2>
 
-      <div className="mb-4">
-        <label htmlFor="categoria" className="block font-medium mb-2">
-          Filtrar por Categoria:
-        </label>
-        <select
-          id="categoria"
-          value={categoriaSelecionada}
-          onChange={(e) => setCategoriaSelecionada(e.target.value)}
-          className="border rounded px-4 py-2 w-full"
-        >
-          <option value="">Todas as Categorias</option>
-          {categorias.map((categoria) => (
-            <option key={categoria.categoriaId} value={categoria.categoriaId}>
-              {categoria.nome}
-            </option>
-          ))}
-        </select>
-      </div>
+      {error && <div className="text-red-600 text-center mb-4">{error}</div>}
 
-      {loading ? (
-        <p className="text-gray-500">Carregando produtos...</p>
-      ) : produtos.length === 0 ? (
-        <p className="text-gray-500 mb-4">Nenhum produto encontrado.</p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <table className="w-full bg-white rounded-lg shadow-md">
+        <thead>
+          <tr>
+            <th className="p-2 border-b">ID</th>
+            <th className="p-2 border-b">Nome</th>
+            <th className="p-2 border-b">Descrição</th>
+            <th className="p-2 border-b">Preço</th>
+            <th className="p-2 border-b">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
           {produtos.map((produto) => (
-            <div
-              key={produto.produtoId}
-              className="border p-4 rounded shadow-md bg-white"
-            >
-              <h2 className="font-bold text-lg">{produto.nome}</h2>
-              <p className="text-gray-700">Preço: R${produto.preco.toFixed(2)}</p>
-              <p className="text-gray-700">
-                Estoque: {produto.estoque || "Não informado"}
-              </p>
-              <p className="text-gray-700">
-                Categoria: {produto.categoriaNome || "Sem categoria"}
-              </p>
-            </div>
+            <tr key={produto.produtoId}>
+              <td className="p-2 border-b">{produto.produtoId}</td>
+              <td className="p-2 border-b">{produto.nome}</td>
+              <td className="p-2 border-b">{produto.descricao}</td>
+              <td className="p-2 border-b">R$ {produto.preco.toFixed(2)}</td>
+              <td className="p-2 border-b">
+                <button
+                  onClick={() => (window.location.href = `/produtos/editar/${produto.produtoId}`)}
+                  className="text-blue-600 hover:underline mr-2"
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(produto.produtoId)}
+                  className="text-red-600 hover:underline"
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
           ))}
-        </div>
-      )}
-
-      <div className="flex justify-between mt-6">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-300"
-        >
-          Voltar
-        </button>
-        <button
-          onClick={handleNextPage}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Próximo
-        </button>
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 }
 
-export default ListaProdutos;
+export default ListarProdutos;
