@@ -1,17 +1,21 @@
 import React from "react";
 
 function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onSave) {
+      onSave(user); // Passa o objeto `user` para o `onSave`
+    }
+  };
+
   return (
     <div className="bg-white shadow p-6 rounded mb-6">
       <h2 className="text-xl font-bold mb-4">Adicionar/Editar Usuário</h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSave();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="UsuarioNome" className="block font-bold mb-1">Nome do usuário</label>
+          <label htmlFor="UsuarioNome" className="block font-bold mb-1">
+            Nome do usuário
+          </label>
           <input
             type="text"
             id="UsuarioNome"
@@ -22,7 +26,9 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="Senha" className="block font-bold mb-1">Senha</label>
+          <label htmlFor="Senha" className="block font-bold mb-1">
+            Senha
+          </label>
           <input
             type="password"
             id="Senha"
@@ -33,7 +39,9 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="Role" className="block font-bold mb-1">Função</label>
+          <label htmlFor="Role" className="block font-bold mb-1">
+            Função
+          </label>
           <select
             id="Role"
             name="Role"
@@ -46,10 +54,17 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
           </select>
         </div>
         <div className="flex justify-end gap-4">
-          <button type="button" onClick={onCancel} className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+          >
             Cancelar
           </button>
-          <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+          >
             Salvar
           </button>
         </div>
