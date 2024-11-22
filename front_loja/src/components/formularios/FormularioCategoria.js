@@ -11,109 +11,77 @@ function Categorias() {
 
   const token = localStorage.getItem('token');
 
-  // Função para buscar as categorias
   const fetchCategorias = async () => {
     setLoading(true);
     setError('');
     try {
       const response = await fetch('http://localhost:5238/categorias', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
-  
       if (response.ok) {
         const data = await response.json();
-        console.log(data); // Debug: veja o que está sendo retornado
         setCategorias(data);
       } else {
         setError('Erro ao buscar categorias. Verifique sua conexão.');
       }
-    } catch (error) {
-      console.error('Erro na requisição:', error);
+    } catch {
       setError('Erro ao buscar categorias. Tente novamente mais tarde.');
     } finally {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchCategorias();
   }, []);
 
-  // Função para enviar os dados do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-  
-    const categoria = {
-      nome: nome,
-      descricao: descricao,
-    };
-  
-    // Para a requisição PUT, adicione o ID no corpo
-    if (categoriaId) {
-      categoria.categoriaId = categoriaId; // Inclua o ID explicitamente no corpo
-    }
-  
-    console.log('Dados enviados:', categoria);
-  
+
+    const categoria = { nome, descricao, ...(categoriaId && { categoriaId }) };
+
     try {
       const method = categoriaId ? 'PUT' : 'POST';
       const url = categoriaId
         ? `http://localhost:5238/categorias/${categoriaId}`
         : 'http://localhost:5238/categorias';
-  
-      console.log('URL da requisição:', url);
-      console.log('Método HTTP:', method);
-  
+
       const response = await fetch(url, {
         method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(categoria),
       });
-  
+
       if (response.ok) {
-        const data = await response.json();
-        console.log('Resposta do servidor:', data);
         setSuccess(`Categoria ${categoriaId ? 'atualizada' : 'cadastrada'} com sucesso!`);
         setNome('');
         setDescricao('');
         setCategoriaId(null);
         fetchCategorias();
       } else {
-        const errorData = await response.json();
-        console.error('Erro no servidor:', errorData);
-        setError(`Erro: ${errorData.message || 'Erro desconhecido no servidor'}`);
+        setError('Erro no servidor ao processar a solicitação.');
       }
-    } catch (error) {
-      console.error('Erro na requisição:', error);
-      setError('Ocorreu um erro ao enviar os dados. Tente novamente.');
+    } catch {
+      setError('Erro ao enviar os dados. Tente novamente.');
     }
-  };  
-  // Função para editar uma categoria
+  };
+
   const handleEdit = (categoria) => {
-    console.log('Editando categoria:', categoria);
-    setNome(categoria.nome); // Atualiza o campo "Nome"
-    setDescricao(categoria.descricao); // Atualiza o campo "Descrição"
-    setCategoriaId(categoria.categoriaId); // Define o ID da categoria a ser editada
+    setNome(categoria.nome);
+    setDescricao(categoria.descricao);
+    setCategoriaId(categoria.categoriaId);
     setError('');
     setSuccess('');
   };
 
-  // Função para deletar uma categoria
   const handleDelete = async (id) => {
     if (window.confirm('Tem certeza que deseja excluir esta categoria?')) {
       try {
         const response = await fetch(`http://localhost:5238/categorias/${id}`, {
           method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         if (response.ok) {
@@ -122,93 +90,94 @@ function Categorias() {
         } else {
           setError('Erro ao deletar categoria.');
         }
-      } catch (error) {
-        setError('Ocorreu um erro ao deletar a categoria. Tente novamente.');
+      } catch {
+        setError('Erro ao deletar a categoria. Tente novamente.');
       }
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Gerenciar Categorias</h2>
+    <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Gerenciar Categorias</h2>
 
-      {error && <div className="mb-4 text-red-600 text-center font-semibold">{error}</div>}
-      {success && <div className="mb-4 text-green-600 text-center font-semibold">{success}</div>}
+      {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
+      {success && <div className="mb-4 text-green-500 text-center">{success}</div>}
 
-      <form onSubmit={handleSubmit} className="mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">Nome:</label>
+            <label className="block text-sm font-medium text-gray-700">Nome:</label>
             <input
-  type="text"
-  value={nome} // O valor do campo "Nome" deve ser o estado "nome"
-  onChange={(e) => setNome(e.target.value)} // Atualiza o estado ao alterar o valor
-  required
-  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-/>
-
-<input
-  type="text"
-  value={descricao} // O valor do campo "Descrição" deve ser o estado "descricao"
-  onChange={(e) => setDescricao(e.target.value)} // Atualiza o estado ao alterar o valor
-  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-/>
+              type="text"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Descrição:</label>
+            <input
+              type="text"
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+            />
           </div>
         </div>
         <button
           type="submit"
-          className="w-full py-3 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
         >
           {categoriaId ? 'Atualizar Categoria' : 'Cadastrar Categoria'}
         </button>
       </form>
 
       {loading ? (
-        <div className="text-center text-gray-600">Carregando categorias...</div>
+        <p className="text-center text-gray-500 mt-6">Carregando categorias...</p>
       ) : (
-        <>
-          <h2 className="text-xl font-bold mb-4 text-gray-800">Lista de Categorias</h2>
-          <table className="min-w-full bg-white border border-gray-300 rounded-lg">
-            <thead>
+        <table className="w-full mt-6 border-collapse bg-gray-100 rounded-lg shadow-md">
+          <thead>
+            <tr>
+              <th className="border px-4 py-2">ID</th>
+              <th className="border px-4 py-2">Nome</th>
+              <th className="border px-4 py-2">Descrição</th>
+              <th className="border px-4 py-2">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categorias.length > 0 ? (
+              categorias.map((categoria) => (
+                <tr key={categoria.categoriaId} className="bg-white">
+                  <td className="border px-4 py-2">{categoria.categoriaId}</td>
+                  <td className="border px-4 py-2">{categoria.nome}</td>
+                  <td className="border px-4 py-2">{categoria.descricao}</td>
+                  <td className="border px-4 py-2">
+                    <button
+                      onClick={() => handleEdit(categoria)}
+                      className="text-blue-500 hover:underline"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(categoria.categoriaId)}
+                      className="text-red-500 hover:underline ml-4"
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
-                <th className="border-b-2 px-4 py-2 text-left">ID</th>
-                <th className="border-b-2 px-4 py-2 text-left">Nome</th>
-                <th className="border-b-2 px-4 py-2 text-left">Descrição</th>
-                <th className="border-b-2 px-4 py-2 text-left">Ações</th>
+                <td colSpan="4" className="text-center py-4">
+                  Nenhuma categoria encontrada.
+                </td>
               </tr>
-            </thead>
-            <tbody>
-  {categorias.length > 0 ? (
-    categorias.map((categoria) => (
-      <tr key={categoria.categoriaId}> {/* Use categoriaId como key */}
-        <td className="border-b px-4 py-2">{categoria.categoriaId}</td>
-        <td className="border-b px-4 py-2">{categoria.nome}</td>
-        <td className="border-b px-4 py-2">{categoria.descricao}</td>
-        <td className="border-b px-4 py-2">
-        <button
-  onClick={() => handleEdit(categoria)}
-  className="text-blue-600 hover:underline mr-2"
->
-  Editar
-</button>
-          <button
-            onClick={() => handleDelete(categoria.categoriaId)}
-            className="text-red-600 hover:underline"
-          >
-            Excluir
-          </button>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="4" className="text-center py-4">Nenhuma categoria encontrada.</td>
-    </tr>
-  )}
-</tbody>
-
-          </table>
-        </>
+            )}
+          </tbody>
+        </table>
       )}
     </div>
   );
