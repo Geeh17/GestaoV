@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1opq1L0Cx2k=",
+  "dgSpecHash": "O4ZN65JE8do=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\APILoja.csproj",
+  "projectFilePath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\APILoja.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Geraldo Luiz\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Geraldo Luiz\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

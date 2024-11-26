@@ -6,14 +6,13 @@ function Home() {
     products: 0,
     reports: 0,
   });
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [loading, setLoading] = useState(true); 
 
   const fetchMetrics = useCallback(async () => {
     try {
-      setLoading(true); // Início do carregamento
+      setLoading(true); 
       const token = localStorage.getItem('token');
 
-      // Buscar categorias
       const categoriasResponse = await fetch('http://localhost:5238/categorias', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -28,7 +27,6 @@ function Home() {
       const categoriesCount = categorias.length;
       console.log('Categorias retornadas pela API:', categorias);
 
-      // Buscar produtos
       const produtosResponse = await fetch('http://localhost:5238/produtos', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -43,7 +41,6 @@ function Home() {
       const productsCount = produtos.length;
       console.log('Produtos retornados pela API:', produtos);
 
-      // Número fictício de relatórios (caso seja uma métrica real, substitua pela lógica correta)
       const reportsCount = 1;
 
       setMetrics({
@@ -54,7 +51,7 @@ function Home() {
     } catch (error) {
       console.error('Erro ao carregar métricas:', error);
     } finally {
-      setLoading(false); // Fim do carregamento
+      setLoading(false); 
     }
   }, []);
 

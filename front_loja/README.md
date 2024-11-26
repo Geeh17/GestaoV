@@ -1,4 +1,4 @@
 Geraldo Luiz
-Thiago
-Bernardo
+Thiago Cardoso
+Bernardo Brigoli
 Rafael Caçador

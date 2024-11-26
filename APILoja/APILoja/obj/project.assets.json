@@ -4238,11 +4238,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\APILoja.csproj",
+      "projectUniqueName": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\APILoja.csproj",
       "projectName": "APILoja",
-      "projectPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\APILoja.csproj",
+      "projectPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\APILoja.csproj",
       "packagesPath": "C:\\Users\\Geraldo Luiz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\Loja\\APILoja\\APILoja\\obj\\",
+      "outputPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

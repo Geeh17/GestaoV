@@ -4,28 +4,25 @@ import UsuarioFormulario from "./UsuarioFormulario";
 function ListaUsuarios({ users, onEdit, onDelete }) {
   const [editingUser, setEditingUser] = useState(null);
 
-  // Função para lidar com a edição
   const handleEdit = (user) => {
     if (!user || !user.usuarioId) {
       console.error("Erro: Usuário inválido selecionado para edição:", user);
       return;
     }
     console.log("Usuário selecionado para edição:", user);
-    setEditingUser(user); // Passa o usuário selecionado para o estado
+    setEditingUser(user); 
   };
 
-  // Função para salvar o usuário editado
   const handleSave = (updatedUser) => {
     if (!updatedUser || !updatedUser.usuarioId) {
       console.error("Erro: Usuário inválido ao salvar:", updatedUser);
       return;
     }
     console.log("Salvando alterações do usuário:", updatedUser);
-    onEdit(updatedUser); // Passa o usuário atualizado para o pai
-    setEditingUser(null); // Fecha o formulário de edição
+    onEdit(updatedUser); 
+    setEditingUser(null); 
   };
 
-  // Função para cancelar a edição
   const handleCancel = () => {
     console.log("Edição cancelada.");
     setEditingUser(null);
@@ -40,7 +37,7 @@ function ListaUsuarios({ users, onEdit, onDelete }) {
       {editingUser ? (
         <UsuarioFormulario
           user={editingUser}
-          onChange={(updatedUser) => setEditingUser(updatedUser)} // Atualiza o estado com mudanças do formulário
+          onChange={(updatedUser) => setEditingUser(updatedUser)}
           onSave={handleSave}
           onCancel={handleCancel}
         />

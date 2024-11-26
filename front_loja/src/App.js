@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import BarraLateral from "./components/BarraLateral";
-import AppRoutes from "./routes/routes"; // Corrija o caminho, se necessário
+import AppRoutes from "./routes/routes"; 
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

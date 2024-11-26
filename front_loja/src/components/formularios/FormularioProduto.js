@@ -11,7 +11,6 @@ function FormularioProduto() {
   const [produtoId, setProdutoId] = useState(null);
 
   useEffect(() => {
-    // Buscar categorias para o dropdown
     const fetchCategorias = async () => {
       const token = localStorage.getItem('token');
       try {
@@ -36,14 +35,13 @@ function FormularioProduto() {
   }, []);
 
   useEffect(() => {
-    // Buscar dados do produto se estiver em modo de edição
     const fetchProduto = async () => {
       const token = localStorage.getItem('token');
       const pathParts = window.location.pathname.split('/');
-      const produtoIdFromUrl = pathParts[pathParts.length - 1]; // Obter ID da URL
+      const produtoIdFromUrl = pathParts[pathParts.length - 1]; 
 
       if (produtoIdFromUrl && produtoIdFromUrl !== 'novo') {
-        setProdutoId(produtoIdFromUrl); // Atualizar estado com o ID do produto
+        setProdutoId(produtoIdFromUrl); 
 
         try {
           const response = await fetch(`http://localhost:5238/produtos/${produtoIdFromUrl}`, {
@@ -88,8 +86,8 @@ function FormularioProduto() {
     try {
       const method = produtoId ? 'PUT' : 'POST';
       const url = produtoId
-        ? `http://localhost:5238/produtos/${produtoId}` // Para atualizar, inclui o ID na URL
-        : 'http://localhost:5238/produtos'; // Para criar, usa a URL sem ID
+        ? `http://localhost:5238/produtos/${produtoId}`
+        : 'http://localhost:5238/produtos'; 
 
       const response = await fetch(url, {
         method,

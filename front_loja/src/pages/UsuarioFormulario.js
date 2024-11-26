@@ -4,7 +4,7 @@ function UsuarioFormulario({ user, onChange, onSave, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (onSave) {
-      onSave(user); // Passa o objeto `user` para o `onSave`
+      onSave(user); 
     }
   };
 
