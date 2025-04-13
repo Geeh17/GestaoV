@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\gestaov\\apiloja\\apiloja\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|c:\\users\\geraldo luiz\\desktop\\projetos pessoais\\gestaov\\apiloja\\apiloja\\apiendpoints\\categoriasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCC6EC52-8AC4-44F1-926E-D6396088476F}|APILoja\\APILoja.csproj|solutionrelative:apiloja\\apiendpoints\\categoriasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -27,6 +31,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\appsettings.json",
+              "RelativeDocumentMoniker": "APILoja\\appsettings.json",
+              "ToolTip": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\appsettings.json",
+              "RelativeToolTip": "APILoja\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-23T22:41:21.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CategoriasEndpoints.cs",
               "DocumentMoniker": "C:\\Users\\Geraldo Luiz\\Desktop\\Projetos Pessoais\\GestaoV\\APILoja\\APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
               "RelativeDocumentMoniker": "APILoja\\ApiEndpoints\\CategoriasEndpoints.cs",
